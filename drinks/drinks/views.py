@@ -3,6 +3,7 @@ from .models import Drink
 from .serializers import DrinkSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 
 @api_view(['GET', 'POST'])
 def drink_list(request):
@@ -15,3 +16,15 @@ def drink_list(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def drink_detail(request, id):
+    try:
+        Drink.objects.get(pk=id)
+    except Drink.DoesNotExist:
+
+    if request.method == 'GET':
+        pass
+    elif request.method == 'PUT':
+        pass 
+    elif request.method == 'DELETE'
